@@ -35,9 +35,10 @@ arrow_right.addEventListener("click", () => {
 
 let dots = document.querySelector(".dots");
 let index = 0;
-const arraySlides = 4;
+const arraySlides = slides.length;
 
 function affichageDots() {
+	dots.innerHTML = ''
 	for (let i = 0; i < arraySlides; i++) {
 		let dot = document.createElement("div");
 		dot.classList.add("dot");
@@ -53,60 +54,50 @@ affichageDots();
 
 //**Changement d'image au click sur les flèches **//
 
-let img = document.querySelector(".banner-img")
-let p = document.querySelector("#banner p")
+const img = document.querySelector(".banner-img")
+const p = document.querySelector("#banner p")
 const cheminImage = './assets/images/slideshow/'
 
-function clickDroit() {
+
+arrow_right.addEventListener("click", () => {
+	
+
+	index++;
+	if (index < slides.length) {
+		console.log(index);
+		img.src = cheminImage + slides[index].image;
+		p.innerHTML = slides[index].tagLine;
+	}
+	else {
+		index = 0
+		img.src = cheminImage + slides[index].image;
+		p.innerHTML = slides[index].tagLine;
+	}
+	affichageDots();
+})
 
 
 
-	arrow_right.addEventListener("click", () => {
-		index++;
-		if (index < slides.length) {
+arrow_left.addEventListener("click", () => {
+	
+	index--;
 
-
-			console.log(index);
-			img.src = cheminImage + slides[index].image;
-			p.innerHTML = slides[index].tagLine;
-		}
-		else {
-
-			index = 0
-			img.src = cheminImage + slides[index].image;
-			p.innerHTML = slides[index].tagLine;
-		}
-	})
-
-}
-
-
-
-clickDroit();
-
-function clickGauche() {
+	if (index !== -1) {
+		console.log(index);
+		img.src = cheminImage + slides[index].image;
+		p.innerHTML = slides[index].tagLine;
+	}
+	else {
+		index = 3
+		img.src = cheminImage + slides[index].image;
+		p.innerHTML = slides[index].tagLine;
+	}
+	affichageDots();
+})
 
 
 
-	arrow_left.addEventListener("click", () => {
-		index--;
-		if (index !== -1) {
-
-
-			console.log(index);
-			img.src = cheminImage + slides[index].image;
-			p.innerHTML = slides[index].tagLine;
-		}
-		else {
-			index = 3
-			img.src = cheminImage + slides[index].image;
-			p.innerHTML = slides[index].tagLine;
-		}
-	})
-
-}
 
 
 
-clickGauche();
 
